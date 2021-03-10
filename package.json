@@ -8,7 +8,7 @@
   "private": false,
   "scripts": {
     "serve": "webpack-cli serve",
-    "build": "vue-cli-service build"
+    "build": "webpack-cli build"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^6.2.1",

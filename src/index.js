@@ -1,5 +1,5 @@
-import freeton from "../freeton_dev/src/index";
-// import freeton from "freeton";
+// import freeton from "../freeton_dev/src/index";
+import freeton from "freeton";
 
 const Kington = require('../contracts/Kington.json');
 const KingtonOrder = require('../contracts/KingtonOrder.json');

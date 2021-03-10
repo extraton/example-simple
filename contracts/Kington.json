@@ -1,7 +1,7 @@
 {
-  "networks":  {
+  "networks": {
     "2": {
-      "address": "0:ca2fc59493ec4f486bbabeb8bcef6d203f3d190a32aed48659b59a81bf625bd1"
+      "address": "0:bbab3302726f352371676aa889ea69e155e385c3e3e4c9fb85a5c3b64ccca60c"
     }
   },
   "abi": {
@@ -42,11 +42,45 @@
               {
                 "name": "message",
                 "type": "bytes"
+              },
+              {
+                "name": "count",
+                "type": "uint16"
+              },
+              {
+                "name": "lastPayAt",
+                "type": "uint256"
               }
             ],
             "name": "value0",
             "type": "map(uint256,tuple)"
           }
+        ]
+      },
+      {
+        "name": "withdraw",
+        "inputs": [
+          {
+            "name": "destinationAddress",
+            "type": "address"
+          },
+          {
+            "name": "amount",
+            "type": "uint128"
+          }
+        ],
+        "outputs": [
+        ]
+      },
+      {
+        "name": "remove",
+        "inputs": [
+          {
+            "name": "id",
+            "type": "uint256"
+          }
+        ],
+        "outputs": [
         ]
       }
     ],

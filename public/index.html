@@ -4,13 +4,28 @@
     <title>Extraton Simple Example</title>
 </head>
 <body>
-<button id="buttonRequestVersion" onclick="app.requestVersion()">Get Version</button>
-<button id="buttonRequestNetwork" onclick="app.requestNetwork()">Get Network</button>
-<button id="buttonGetMessages" onclick="app.getMessages()">Get Messages</button>
-<button id="buttonDeploy" onclick="app.deploy()">Deploy</button>
-<button id="buttonTransfer" onclick="app.transfer()">Transfer</button>
-<!--<button id="buttonRun" onclick="app.run()">Run</button>-->
+<div>
+    <button id="buttonRequestVersion" onclick="app.requestVersion()">Get Version</button>
+    <button id="buttonRequestNetwork" onclick="app.requestNetwork()">Get Network</button>
+    <button id="buttonGetMessages" onclick="app.getMessages()">Get Messages</button>
+    <button id="buttonDeploy" onclick="app.deploy()">Deploy</button>
+    <button id="buttonTransfer" onclick="app.transfer()">Transfer</button>
+    <button id="buttonRun" onclick="app.run()">Run</button>
+</div>
+<br/>
+<div>
+    <div>Confirm transaction:</div>
+    <div>
+        <form id="confirmTransactionForm" onsubmit="app.confirmTransaction(this);return false;">
+            <input type="text" name="address" placeholder="Wallet Address" value="0:efcd515d521792193852e972bbcfe20430b558f5822ebe0db5020abaa891de52">
+            <input type="text" name="txid" placeholder="Txid" value="0x5fd888d92cbc1a41">
+            <button id="buttonConfirmTransaction">Confirm</button>
+        </form>
+    </div>
+</div>
+<br/>
 <div>Look results in console.</div>
+<div id="result"></div>
 <script src="./main.js"></script>
 </body>
 </html>

@@ -53,7 +53,11 @@ window.app = {
       const provider = _.getProvider();
       const contract = new freeton.Contract(provider, Kington.abi, Kington.networks['2'].address);
       const messages = await contract.functions.getMessages.runGet();
+      document.getElementById('result').innerHTML += '</br>' + JSON.stringify(messages);
       console.log(messages);
+    } catch (e) {
+      document.getElementById('result').innerHTML += '</br>' + JSON.stringify(e);
+      console.log(e);
     } finally {
       button.disabled = false;
     }

@@ -6,8 +6,13 @@
 <body>
 <div>
     <h3>Common</h3>
-        <button id="buttonRequestVersion" onclick="app.requestVersion()">Get Version</button>
-        <button id="buttonRequestNetwork" onclick="app.requestNetwork()">Get Network</button>
+    <button id="buttonRequestVersion" onclick="app.requestVersion()">Get Version</button>
+    <button id="buttonRequestNetwork" onclick="app.requestNetwork()">Get Network</button>
+    <br/>
+    <br/>
+    <button id="buttonSubscribeToExtensionEvents" onclick="app.subscribeToExtensionEvents()">
+        Subscribe to extension events
+    </button>
 </div>
 
 <br/>
@@ -47,13 +52,28 @@
     <br/>
     <div>Transfer Token</div>
     <form id="transferTokenForm" onsubmit="app.transferToken(this);return false;">
-        <input type="text" name="rootAddress" placeholder="Root Address" value="0:9eb29224891052e19f0ade8259bb636bca0cdfc2b5b4fb4f760e2750b7a9488f">
+        <input type="text" name="rootAddress" placeholder="Root Address"
+               value="0:9eb29224891052e19f0ade8259bb636bca0cdfc2b5b4fb4f760e2750b7a9488f">
         <input type="text" name="address" placeholder="To address">
         <input type="text" name="amount" placeholder="Amount" value="100000000">
         <button id="buttonTransferToken">Transfer token</button>
     </form>
+    <br/>
+    <div>Add Token</div>
+    <form id="addTokenForm" onsubmit="app.addToken(this);return false;">
+        <input type="text" name="rootAddress" placeholder="Root Address"
+               value="0:bfd9c9f619b11ce1f3f9520af60dd64a5d4773116afab5e4fcd177208a9c7358">
+        <button id="buttonAddToken">Add token</button>
+    </form>
+    <br/>
+    <div>Activate Token</div>
+    <form id="activateTokenForm" onsubmit="app.activateToken(this);return false;">
+        <input type="text" name="rootAddress" placeholder="Root Address"
+               value="0:bfd9c9f619b11ce1f3f9520af60dd64a5d4773116afab5e4fcd177208a9c7358">
+        <button id="buttonActivateToken">Activate token</button>
+    </form>
 </div>
-<br/>
+<hr/>
 <div>Look results in console.</div>
 <div id="result"></div>
 <script src="./main.js"></script>

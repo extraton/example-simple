@@ -28,7 +28,7 @@ window.app = {
       console.log(version);
     } catch (e) {
       document.getElementById('result').innerHTML += '</br>' + JSON.stringify(e);
-      console.log(e);
+      console.error(e);
     } finally {
       button.disabled = false;
     }
@@ -57,7 +57,7 @@ window.app = {
       console.log(messages);
     } catch (e) {
       document.getElementById('result').innerHTML += '</br>' + JSON.stringify(e);
-      console.log(e);
+      console.error(e);
     } finally {
       button.disabled = false;
     }
@@ -134,7 +134,7 @@ window.app = {
       document.getElementById('result').innerHTML += '</br>' + `Called. TxId: ${contractMessageProcessing.txid}`
     } catch (e) {
       document.getElementById('result').innerHTML += '</br>' + JSON.stringify(e);
-      console.log(e);
+      console.error(e);
     } finally {
       button.disabled = false;
     }
@@ -151,7 +151,7 @@ window.app = {
       console.log(tokenList);
     } catch (e) {
       document.getElementById('result').innerHTML += '</br>' + JSON.stringify(e);
-      console.log(e);
+      console.error(e);
     } finally {
       button.disabled = false;
     }
@@ -180,9 +180,69 @@ window.app = {
       document.getElementById('result').innerHTML += '</br>' + `Transferred. TxId: ${contractMessageProcessing.txid}`
     } catch (e) {
       document.getElementById('result').innerHTML += '</br>' + JSON.stringify(e);
-      console.log(e);
+      console.error(e);
     } finally {
       button.disabled = false;
     }
   },
+  async addToken(form) {
+    const button = document.getElementById('buttonAddToken');
+    button.disabled = true;
+    try {
+      _.checkExtensionAvailability();
+      const provider = _.getProvider();
+      const signer = await provider.getSigner();
+      const wallet = signer.getWallet();
+      const token = await wallet.addToken(form.rootAddress.value);
+      console.log(token);
+    } catch (e) {
+      document.getElementById('result').innerHTML += '</br>' + JSON.stringify(e);
+      console.error(e);
+    } finally {
+      button.disabled = false;
+    }
+  },
+  async activateToken(form) {
+    const button = document.getElementById('buttonActivateToken');
+    button.disabled = true;
+    try {
+      _.checkExtensionAvailability();
+      const provider = _.getProvider();
+      const signer = await provider.getSigner();
+      const wallet = signer.getWallet();
+      const tokenList = await wallet.getTokenList();
+      let token = null;
+      for (const item of tokenList) {
+        if (item.rootAddress === form.rootAddress.value) {
+          token = item;
+        }
+      }
+      if (null === token) {
+        throw 'Token with this rootAddress not found in extension.';
+      }
+      await token.activate();
+      document.getElementById('result').innerHTML += '</br>Activated. Token wallet address:' + token.walletAddress;
+      console.log(token);
+    } catch (e) {
+      document.getElementById('result').innerHTML += '</br>' + JSON.stringify(e);
+      console.error(e);
+    } finally {
+      button.disabled = false;
+    }
+  },
+  async subscribeToExtensionEvents() {
+    const button = document.getElementById('buttonSubscribeToExtensionEvents');
+    button.disabled = true;
+    try {
+      _.checkExtensionAvailability();
+      const provider = _.getProvider();
+      await provider.addEventListener(function (data) {
+        document.getElementById('result').innerHTML += '</br>' + JSON.stringify(data);
+      });
+    } catch (e) {
+      document.getElementById('result').innerHTML += '</br>' + JSON.stringify(e);
+      console.error(e);
+      button.disabled = false;
+    }
+  }
 };

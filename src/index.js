@@ -45,6 +45,22 @@ window.app = {
       button.disabled = false;
     }
   },
+  async hasSigner() {
+    const button = document.getElementById('buttonHasSigner');
+    button.disabled = true;
+    try {
+      _.checkExtensionAvailability();
+      const provider = _.getProvider();
+      const hasSigner = await provider.hasSigner();
+      console.log({hasSigner});
+      document.getElementById('result').innerHTML += '</br>' + JSON.stringify(hasSigner)
+    } catch (e) {
+      document.getElementById('result').innerHTML += '</br>' + JSON.stringify(e);
+      console.error(e);
+    } finally {
+      button.disabled = false;
+    }
+  },
   async runContractMethod() {
     const button = document.getElementById('buttonRunContractMethod');
     button.disabled = true;

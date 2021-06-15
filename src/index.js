@@ -61,6 +61,23 @@ window.app = {
       button.disabled = false;
     }
   },
+  async sign(form) {
+    const button = document.getElementById('buttonSign');
+    button.disabled = true;
+    try {
+      _.checkExtensionAvailability();
+      const provider = _.getProvider();
+      const signer = await provider.getSigner();
+      const result = await signer.sign(form.unsigned.value);
+      document.getElementById('result').innerHTML += '</br>' + JSON.stringify(result);
+      console.log(result);
+    } catch (e) {
+      document.getElementById('result').innerHTML += '</br>' + JSON.stringify(e);
+      console.error(e);
+    } finally {
+      button.disabled = false;
+    }
+  },
   async runContractMethod() {
     const button = document.getElementById('buttonRunContractMethod');
     button.disabled = true;

@@ -16,6 +16,13 @@
     <button id="buttonSubscribeToExtensionEvents" onclick="app.subscribeToExtensionEvents()">
         Subscribe to extension events
     </button>
+    <br/>
+    <br/>
+    <form id="signForm" onsubmit="app.sign(this);return false;">
+        <textarea name="unsigned" placeholder="Unsigned">String to sign</textarea>
+        <br/>
+        <button id="buttonSign">Sign</button>
+    </form>
 </div>
 
 <br/>

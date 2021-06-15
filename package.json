@@ -17,6 +17,6 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "freeton": "^0.8.0"
+    "freeton": "^0.9.0"
   }
 }
